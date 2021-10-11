@@ -72,7 +72,7 @@ router.get("/:id", async(req, res) => {
             post,
             user: req.user,
             title: `Stride Connect`,
-            url: `https://www.stride-connect.herokuapp.com/posts${url}`
+            url: `https://stride-connect.herokuapp.com/posts${url}`
         })
 
       } catch (err) {
