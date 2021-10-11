@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require("express");
-const port = process.env.PORT || 4000
+
 const path = require("path");
 const config = require("./config");
 const { name, keys } = config.session;
@@ -50,6 +50,8 @@ require('./routes/index')(app,passport);
 
 app.use("/users/", userRoute);
 app.use("/posts/", postRoute);
+
+const port = process.env.PORT || 4000
 
 app.listen(port, () => {
     console.log(`Server running in port: ${port}`)
