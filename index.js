@@ -22,7 +22,7 @@ const app = express();
 
 //Connect to mongoDb
 mongoose
-  .connect('mongodb+srv://3rive:chexyemma8@cluster0.q5uio.mongodb.net/myStride-Connect?retryWrites=true&w=majority', {
+  .connect('mongodb+srv://3rive:chexyemma8@cluster0.q5uio.mongodb.net/Stride-Connect?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
