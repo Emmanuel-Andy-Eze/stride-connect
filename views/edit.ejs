@@ -1,0 +1,95 @@
+<%- include('header') -%>
+
+<div class="nav">
+    <div class="nav-left">
+        
+        <a href="/" style="text-decoration: none;"><span class="logo1"><img src="/public/img/strides logo 7.png" alt="" height="60" width="120"></span></a>
+        
+    </div>
+
+    <div class="nav-right">
+        <!-- <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a> -->
+        
+    </div>
+</div>
+
+<div class="container" style="padding-top: 6rem;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card  bg-dark text-white ">
+                <div class="card-header">
+                    <h2 style="font-weight: 800;">Edit your Profile</h2>
+                    <p></p>
+                </div>
+
+                <div class="card-body bg-dark">
+                    
+                    <form method="post" action="/users/profile/<%= user.username %>/edit " enctype="multipart/form-data">
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+                            <div class="col-12 mb-3">
+                                <input id="name" type="text" class="form-control  bg-secondary text-white border-0" name="name" autocomplete="off" value="<%= user.name %>">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+
+                            <div class="col-12 mb-3">
+                                <input id="email" type="email" class="form-control  bg-secondary text-white border-0" name="email" autocomplete="off" value="<%= user.email %>">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+
+                            <div class="col-12 mb-3">
+                                <input id="username" type="username" class="form-control  bg-secondary-outline text-dark border-0" name="username" autocomplete="off" value="<%= user.username %> " disabled>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">About Me</label>
+                            <div class="col-11">
+                                <textarea name="description" class="bg-secondary" id="description" class="form-control"><%= user.description %></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Select a profile image</label>
+                            <input class="form-control bg-secondary text-white border-0" type="file" id="image" name="image" accept="image/*" value='<%= user.image %>' required>
+                        </div><br>
+
+                        <img src="/public/images/profiles/<%= user.image %> " width="50" height="50" class="mb-2" style="border-radius: 50%; object-fit: cover;">
+
+                        <div class="form-check" style="align-items: center;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                            <label class="form-check-label" style="font-size: .7rem;" for="flexCheckDefault">
+                              I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <input type="hidden" name="id" value="<%= user._id %>">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn mt-3" style="background: linear-gradient(to bottom right, #3B8F18, #3B8F18); color: #fff; padding: .3rem .5rem; font-size: 1rem; border: 1px solid #fff; outline: none; border: none;">
+                                    Update Profile
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<%- include('footer') -%>

@@ -1,0 +1,153 @@
+<%- include('header') -%>
+
+<div class="nav">
+    <div class="nav-left">
+        
+        <a href="/" style="text-decoration: none;"><span class="logo1"><img src="/public/img/strides logo 7.png" alt="" height="60" width="120"></span></a>
+        
+    </div>
+    
+    <div class="nav-right">
+        <% if(user){ %>
+            <div class="nav-right-icons">
+                
+            </div>
+            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <!-- <a href="#"><i class="fa fa-podcast" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a> -->
+            <div class="dropdown">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
+                    <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 35px; width: 35px; border: .5px solid #3B8F18; padding: 1.5px;">
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/users/profile/<%= user.username %> ">Profile</a></li>
+                  <li><a class="dropdown-item" href="/posts/create">New post</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <hr>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            
+        <% } else { %>
+            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <a href="/login" class="btn sign-in" style="background: linear-gradient(to bottom right, #3B8F18, #3B8F18); color: #fff; padding: .3rem .5rem; font-size: .8rem; border: 1px solid #fff; outline: none; border: none;">
+                Get Started
+            </a>
+        <% } %>
+    </div>
+</div>
+
+<main>
+    <div class="main-left">
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" class="nav-link"><i class="far fa-newspaper"></i> Articles</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-podcast"></i> Podcasts</a></li>
+        <hr>
+            <li><a href="#" class="nav-link"><i class="far fa-bell"></i> Notifications</a></li>
+            <li><a href="#" class="nav-link"><i class="far fa-envelope"></i> Messages</a></li>
+        <hr>
+            <li><a href="#" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div class="main-center">
+        <div class="action-center">
+            <div class="new-action">
+                <a href="/" class="action-icon active" style="background-color: transparent; border-bottom: 3px solid #3B8F18; border-right: none; border-left: none; border-top: none; color: #e0e0e0;"><i class="fas fa-book-open"></i> Articles</a>
+                <a href="/videos" class="action-icon" style="border: none;"><i class="fas fa-video"></i> Videos</a>
+                <a href="#" class="action-icon" style="border: none;"><i class="fas fa-microphone-alt"></i> Podcasts</a>
+                <a href="#" class="action-icon" style="border: none;"><i class="fas fa-users"></i> Community</a>
+                <a href="#" class="action-icon" style="border: none;"><i class="fas fa-comments"></i> Chats</a>
+            </div>
+
+            <div class="people">
+                
+            </div>
+        </div>
+        
+        <div class="feeds">
+            <% if(posts.length > 0){ %>
+                <% posts.forEach(function(post){ %>
+                    <div class="feed">
+                        <div class="feed-image">
+                            <!-- <img src="https://www.bakedbyanintrovert.com/wp-content/uploads/2018/05/Birthday-Cake-Recipe-Image-735x735.jpg" alt=""> -->
+                        </div>
+                        <div class="feed-header">
+                            <div class="author-detail">
+                                <img src="<%= post.user.image %> " alt="" class="author-img">
+                                <div class="feed-author-time">
+                                    <span style="font-size: .8rem;"><%= post.user.name %> </i></span>
+                                    <span class="time" style="font-size: .6rem;"><%= moment(post.created).fromNow() %></span>
+                                </div>
+                            </div>
+                           
+                                <div class="feed-action">
+                                    
+                                </div>
+                           
+                        </div>
+        
+                        <div class="feed-center">
+                            <a href="/posts/<%= post._id %> "><p class="feed-title" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 900;"><%= post.title %></p></a>
+                            <p class="post-body" style="font-size: .8rem; font-family: 'Source Sans Pro', sans-serif;"><%= post.description %>... </p>
+                            <div class="feed-category">
+                                <p class="category"><%= post.category %></p>
+                            </div>
+                        </div>
+                        
+                        <!-- <hr class="feed-line"> -->
+                        <div class="feed-bottom">
+                            <ul class="feed-icons">
+                                <li><a href="#"><i class="fas fa-heart"></i> 1.6k</a></li>
+                                <li><a href="#"><i class="far fa-comment-alt"></i> 101</a></li>
+                                <li><a href="#"><i class="far fa-eye"></i> 500</a></li>
+                            </ul>
+                            <div class="bookmark">
+                                <a href="#"><i class="fas fa-bookmark" style="font-size: 1.2rem;"></i></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <% }) %>
+                
+            <% } else { %>
+                <div class="nothing">
+                    <h5>No post to display at the moment</h5>
+                    <p>Try again, please!</p>
+                </div>
+            <% } %>
+        </div>
+
+        <% if(user){ %>
+        <a href="/posts/create"><i class="fas fa-pen-alt" style="font-size: 1.7rem; position: fixed; bottom: 1.5rem; right: 1.2rem;"></i></a>
+        
+        <% } else { %>
+
+            <% } %>
+    </div>
+
+    <div class="main-right">
+        <div class="advert">
+            <img src="/public/img/stride_small.png" alt="">
+        </div>
+        <hr>
+        <div class="following">
+            <h5>Authors you read</h5>
+            <ul class="authors">
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<%- include('footer') -%>

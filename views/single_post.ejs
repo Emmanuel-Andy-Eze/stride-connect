@@ -1,0 +1,169 @@
+<%- include('header') %>
+<div class="nav">
+    <div class="nav-left">
+        
+        <a href="/" style="text-decoration: none;"><span class="logo1"><img src="/public/img/strides logo 7.png" alt="" height="60" width="120"></span></a>
+       
+    </div>
+
+    <!-- <form action="/" method="GET">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="input-group">
+                    <input class="form-control border search-dark" type="search" name="search" placeholder="Search preferred posts..." id="example-search-input">
+                </div>
+            </div>
+        </div>
+    </form> -->
+
+    <div class="nav-right">
+        <% if(user){ %>
+            <div class="nav-right-icons">
+                
+            </div>
+            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <!-- <a href="#"><i class="fa fa-podcast" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a> -->
+            <div class="dropdown">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
+                    <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 35px; width: 35px;">
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/users/profile/<%= user.username %> ">Profile</a></li>
+                  <li><a class="dropdown-item" href="/posts/create>New post</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <hr>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            
+        <% } else { %>
+            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <a href="/logout" class="btn sign-in" style="background: linear-gradient(to bottom right, #3B8F18, #3B8F18); color: #fff; padding: .3rem .5rem; font-size: .8rem; border: 1px solid #fff; outline: none; border: none;">
+                Sign in
+            </a>
+        <% } %>
+    </div>
+</div>
+
+
+
+<main>
+    <div class="main-left">
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" class="nav-link"><i class="far fa-newspaper"></i> Articles</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-podcast"></i> Podcasts</a></li>
+        <hr>
+            <li><a href="#" class="nav-link"><i class="far fa-bell"></i> Notifications</a></li>
+            <li><a href="#" class="nav-link"><i class="far fa-envelope"></i> Messages</a></li>
+        <hr>
+            <li><a href="#" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div class="main-center pt-3">
+        <!-- <div class="action-center">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Choose Category
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <div class="new-action">
+                <a href="#" class="action-icon"><i class="fas fa-book-open"></i></a>
+                <a href="#" class="action-icon"><i class="fas fa-video"></i></a>
+                <a href="#" class="action-icon"><i class="fas fa-microphone-alt"></i></a>
+            </div>
+        </div> -->
+        
+        
+        
+        <div class="show-feeds">
+            <h2><%= post.title %> </h2>
+            <div class="post-info" style="display: flex; justify-content: space-between;">
+                <p>Writen by: <%= post.user.name %> 
+                    <% if(user && user.username != post.user.username) { %>
+                        <% const following = post.user.following;
+                           const action = following.includes(user.username) ? 'unfollow' : 'follow';
+                        %>
+                         <button class="btn btn-primary ml-4" data-action="<%= action %>" data-followers="<%= user.username %>" data-following="<%= post.user.username %>" id="follow-btn">Follow</button>
+                        <% } %>
+                </p>
+                
+                <span class="time"><%= moment(post.created).fromNow() %></span>
+            </div>
+            <div class="post-image mb-3">
+                <img src="<%= post.image %>" alt="" style="height: 15rem; width: 100%; border-radius: 5px; object-fit: cover;">
+            </div>
+            <p style="color: #fff;"><%= url %> </p>
+            <div class="post-body" style="padding-bottom: 3rem;">
+                <span><pre><%= post.body %></pre> </span>
+            </div>
+            
+            
+            
+        </div>
+
+        <div class="post-bottom" style="position: fixed; bottom: 0; width: 100%;">
+            <ul class="post-icons" style="padding-left: 1rem; padding-right: 1rem; padding-bottom: 0; padding-top: .5rem; display: flex; justify-content: space-between;">
+                <li><a href="#"><i class="fas fa-heart"></i> 1.6k</a></li>
+                <li><a href="#"><i class="far fa-comment-alt"></i> 101</a></li>
+                <% if(user) { %>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
+                            <i class="fas fa-share-alt"></i> Share
+                        </a>
+                        <a href=""></button></a>
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item disabled" href="#">Share to: </a></li>
+                          <hr class="text-white mt-1 mb-1">
+                          <li><a class="dropdown-item" style="color: #24CC63;" href="https://api.whatsapp.com/send?text=Learn from this article on Stride: '<%= post.title %>'  + %20 + <%= url %>"><i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp</a></li>
+                          <li><a class="dropdown-item" style="color: #167AAB;" href="https://www.linkedin.com/sharing/share-offsite/?url=<%= url %> "><i class="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+                          <li><a class="dropdown-item" style="color: #24A4F2;" href="https://twitter.com/intent/tweet?url=<%= url %>  + '&text=' + <%= post.title %> "><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+                          <li><a class="dropdown-item" style="color: #3b5998;" href="http://www.facebook.com/sharer.php?u=<%= url %>  "><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                          <hr class="text-white">
+                        </ul>
+                    </div>
+                <% } else { %> 
+                    <span style="color: #e0e0e0;"><i class="fas fa-share-alt"></i> Share</span>
+                <% } %> 
+                
+                
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-right">
+        <div class="advert">
+            <img src="https://www.peakmilk.com.ng/wp-content/uploads/2021/06/evap-mob-page-banner.jpg" alt="">
+        </div>
+        <hr>
+        <div class="following">
+            <h5>Authors you read</h5>
+            <ul class="authors">
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
+            </ul>
+        </div>
+    </div>
+</main>
+    
+
+    
+
+<%- include('footer') %>
+    

@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;0,800;1,700;1,800&display=swap');
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .nav {
+        padding: 0rem .8rem 0 .8rem;
+        background-color: #121212;
+        border-bottom: 1px solid #1D1D1D;
+        z-index: 1000;
+    }
+
+    .fa-pen-alt{
+        background-color: #E0E0E0;
+        color: #3B8F18;
+        padding: .5rem;
+        border-radius: 50%;
+    }
+
+    .fa-bookmark {
+        color: #E0E0E0;
+        font-size: .8rem !important;
+    }
+
+    .fa-bookmark:hover {
+        color: #3B8F18;
+    }
+
+    .feed-line {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    input[type=search] {
+        background: #1D1D1D;
+        border: 3px solid #E0E0E0;
+        color: #E0E0E0;
+        padding-right: 1rem;
+    }
+
+    /* Show feeds */
+    .show-feeds {
+        background-color: #121212;
+        padding: .4rem .8rem;
+        color: #E0E0E0;
+    }
+
+    .show-feeds h2 {
+        font-weight: 800;
+    }
+
+    .post-info p {
+        font-size: .9rem;
+    }
+
+    .nothing {
+        color: #C0C0C0;
+        padding-top: 1rem;
+    }
+
+    .post-info {
+        color: #E0E0E0;
+    }
+    .post-body {
+        color: #E0E0E0;
+        margin-top: 0;
+        padding-top: 0;
+        margin-bottom: .5rem;
+        font-size: .9rem;
+    }
+
+    .post-body span {
+        font-size: 1rem;
+        font-family: 'Source Sans Pro', sans-serif !important;
+    }
+
+    .post-body span pre {
+        font-family: 'Source Sans Pro', sans-serif !important;
+        font-size: 1rem;
+    }
+
+    /* .post-body span {
+        display: inline-block;
+        max-width: 100%;
+        height: 1.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; 
+    } */
+
+    pre {
+        white-space: pre-wrap;
+        font-family: 'Roboto';
+    }
+
+    .post-bottom {
+        border-top: .5px solid #E0E0E0;
+        background-color: #0E0E0E;
+        z-index: 1000;
+        padding-top: .5rem;
+    }
+
+    .post-icons a{
+        color: #E0E0E0;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .rlogo {
+        margin-left: .8rem;
+        color: #E0E0E0;
+    }
+
+
+    .logo1 {
+        padding: 0 0 0 0 ;
+        /* margin-left: .2rem; */
+    }
+
+    .logo2 {
+        display: none;
+    }
+
+    .fa-podcast, .fa-search, .fa-video-camera {
+        background-color: transparent;
+        border-radius: 50%;
+        color: #E0E0E0;
+        padding: .4rem;
+        font-size: 1.2rem;
+        margin-right: .5rem;
+    }
+
+    .add {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .add .fa-plus-circle {
+        font-size: 2.5rem;
+        color: #E0E0E0;
+    }
+
+    .feeds {
+        padding: 4.9rem .8rem;
+        margin-top: 0;
+        background-color: #121212;
+        height: 100vh;
+    }
+
+    .feed {
+        margin-bottom: .8rem;
+        background-color: #1D1D1D;
+        box-shadow: 2px 2px 2px 2px #0E0E0E;
+        border-radius: 8px;
+    }
+
+    .post-icons a {
+        text-decoration: none;
+        color: #E0E0E0;
+    }
+
+    .feed-image {
+        width: 100%;
+        padding: 0;
+    }
+
+    .feed-image img {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+
+    .feed-title {
+        margin-bottom: 0;
+    }
+
+    .feed-title:hover {
+        color: #3B8F18;
+    }
+
+    .fa-ellipsis-v {
+        display: none;
+    }
+
+    .feed-bottom, .feed-center {
+        padding: 3px 8px;
+    }
+
+    .feed-header {
+        padding: 3px 8px 1px 8px;
+    }
+
+    .action-center {
+        display: block;
+        align-items: center;
+        padding: 1.7rem .8rem .3rem .8rem;
+        width: 100%;
+        position: fixed;
+        background-color: #121212;
+        border-top: 1px solid #3C4147;
+        border-bottom: 1px solid #3C4147;
+        font-family: system-ui;
+    }
+
+    .action-icon {
+        background-color: transparent;
+        padding: .5rem;
+        /* margin-left: .3rem; */
+        color: #E0E0E0;
+        border: .5px solid #E0E0E0;
+        border-radius: 5px;
+        font-size: .8rem;
+        text-decoration: none;
+    }
+
+    .new-action {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    /* ADD PAGE */
+    .add-page {
+        /* background: #121212; */
+        color: #E0E0E0;
+        padding-top: 4.5rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+
+    ::placeholder {
+        color: #E0E0E0;
+        font-size: 1.2rem;
+      }
+
+    textarea {
+        border: 1px solid #3C4147;
+        margin: 0;
+        width: 100%;
+        /* border-radius: 10px; */
+
+    }
+
+    label {
+        padding: .5rem .5rem;
+        font-size: 1.2rem;
+        color: #E0E0E0;
+    }
+
+    input[name=title] {
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    input[type=submit] {
+        background-color: #007E21;
+        color: #E0E0E0;
+    }
+
+    .feed-author-time span {
+        color: #E0E0E0;
+    }
+
+    .feed-center a {
+        text-decoration: none;
+        color: #E0E0E0;
+    }
+
+    .sign-in {
+        border: 1px solid #fff;
+    }
+
+    .main-left {
+        display: none;
+    }
+
+    .main-right {
+        display: none;
+    }
+
+    .main-center {
+        width: 100%;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    .profile-detail {
+        width: 99%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
+
+
+@media only screen and (min-width: 375px) {
+        .action-icon {
+            background-color: transparent;
+            padding: .5rem .3rem;
+            /* margin-left: .3rem; */
+            color: #E0E0E0;
+            border: 1px solid #E0E0E0;
+            border-radius: 5px;
+            font-size: .7rem;
+            text-decoration: none;
+        }
+
+        .action-icon:hover, .active {
+            background-color: transparent;
+            color: #E0E0E0;
+        }
+}
+    
