@@ -41,34 +41,29 @@
 
 <div class="page" style="background: #121212; padding-bottom: 2rem;">
 <section class="add-page">
-    <form action="/posts/create" method="POST" enctype="multipart/form-data">
+    <h2 class="ms-1">Upload Video</h2>
+    <form action="/videos/create" method="POST" enctype="multipart/form-data">
         <div class="form-group row mb-2">
-            <input type="text" id="title" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="title" placeholder="Enter Post title here" required><br>
+            <input type="text" id="title" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="title" placeholder="Enter Video title here" required><br>
         </div>
 
         <div class="form-group row mb-2">
-            <input type="text" id="category" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="category" placeholder="#Enter Post Category here" required><br>
+            <input type="text" id="category" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="category" placeholder="#Enter Video Category here" required><br>
         </div>
 
         <div class="form-group row mb-2">
-            <input type="text" id="description" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="description" placeholder="Enter Post Description" required><br>
+            <input type="text" id="description" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="description" placeholder="Enter Video Description" required><br>
         </div>
-
+        <hr style="margin-top: 1rem;">
         <div class="form-group row">
-            <input class="form-control bg-secondary text-white border-0" type="file" id="image" name="image" accept="image/*" style="width: 94%; margin-left: 1rem;" required>
+            <label for="video" class="ms-1">Select Video File</label>
+            <input class="form-control bg-secondary text-white border-0" type="file" id="video" name="video" accept="video/*" style="width: 94%; margin-left: 1rem;" required>
         </div><br>
         <hr style="margin-top: 0;">
         <!-- <label for="coverImage">Choose Cover image</label>
         <input type="file" id="coverImage" name="coverImage" accept="image/*"> -->
         
-        <!-- <label for="body">Write Post Body</label> -->
-        <div class="form-group row">
-            <label for="body" class="col-md-4 col-form-label text-md-right">Article Body</label>
-            <div class="col-12 mb-3">
-                <textarea name="body" class="bg-secondary text-white" id="body" rows="17" class="form-control"></textarea>
-            </div>
-        </div>
- 
+
         <input type="submit" class="btn" value="Upload">
         <a href="/" class="btn btn-danger">Discard</a>
       </form> 

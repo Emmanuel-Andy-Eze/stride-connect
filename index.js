@@ -16,11 +16,12 @@ dotenv.config();
 
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
+const videoRoute = require("./routes/videos")
 
 //Initialize App
 const app = express();
 
-//Connect to mongoDb
+//Connect to mongoDb 
 mongoose
   .connect('mongodb+srv://3rive:chexyemma8@cluster0.q5uio.mongodb.net/Stride-Connect?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -50,6 +51,7 @@ require('./routes/index')(app,passport);
 
 app.use("/users/", userRoute);
 app.use("/posts/", postRoute);
+app.use("/videos/", videoRoute);
 
 const port = process.env.PORT || 4000
 

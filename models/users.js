@@ -13,6 +13,7 @@ const UserSchema = new Schema({
     image: { type: String, default: 'https://res.cloudinary.com/dg0lat2d3/image/upload/v1633949392/1200px-User_font_awesome.svg_tj8u4x.png' },
     description: { type: String, default: '' },
     posts: Array,
+    videos: Array,
     followers: Array,
     following: Array
 

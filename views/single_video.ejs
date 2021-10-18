@@ -88,26 +88,25 @@
         
         
         
-        <div class="show-feeds">
-            <h2><%= post.title %> </h2>
-            <div class="post-info" style="display: flex; justify-content: space-between;">
-                <p>Writen by: <%= post.user.name %> 
-                    <% if(user && user.username != post.user.username) { %>
-                        <% const following = post.user.following;
-                           const action = following.includes(user.username) ? 'unfollow' : 'follow';
-                        %>
-                         <button class="btn btn-primary ml-4" data-action="<%= action %>" data-followers="<%= user.username %>" data-following="<%= post.user.username %>" id="follow-btn">Follow</button>
-                        <% } %>
-                </p>
-                
-                <span class="time"><%= moment(post.created).fromNow() %></span>
+        <div class="show-feeds" style="padding-top: 0; padding: 0;">
+            <div class="post-image mb-1 mt-2" style="position: fixed; padding: 0; width: 100%; margin: 0 auto; z-index: 1000;">
+                <video style="width: 100%;" controls>
+                    <source src="<%= video.video %> " type="video/mp4">
+                    <source src="movie.ogg" type="video/ogg">
+                  Your browser does not support the video tag.
+                  </video>
             </div>
-            <div class="post-image mb-3">
-                <img src="<%= post.image %>" alt="" style="height: 15rem; width: 100%; border-radius: 5px; object-fit: cover;">
-            </div>
-          
-            <div class="post-body" style="padding-bottom: 3rem;">
-                <span><pre><%= post.body %></pre> </span>
+            
+            <div class="video-info" style="padding-top: 18rem; padding-left: 1rem; padding-right: 1rem;">
+                <h5><%= video.title %> </h5>
+                <div class="post-info" style="display: flex; justify-content: space-between;">
+                    <p>Author: <%= video.user.name %>  </p>
+                    <span class="time"><%= moment(video.created).fromNow() %></span>
+                </div>
+                <hr style="margin-top: 0;">
+                <div class="post-body" style="padding-bottom: 3rem;">
+                    <span><pre><%= video.description %></pre> </span>
+                </div>
             </div>
             
             
