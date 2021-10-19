@@ -4,12 +4,21 @@ const posts = require("../models/Post");
 const users = require("../models/users");
 const path = require('path');
 const fs = require('fs');
+const session = require("express-session");
 const crypto = require("crypto");
 const multer = require("multer");
 const cloudinary = require("../classes/cloudinary");
 const Videos = require("../models/Video");
 const { video } = require("../classes/cloudinary");
 
+router.use (
+  session ({
+      secret: "Stride",
+      resave: true,
+      saveUninitialized: false,
+      cookie: {}
+  })
+);
 
     const storage = multer.diskStorage({
         filename: (req, file, cb) => {
@@ -43,6 +52,23 @@ const { video } = require("../classes/cloudinary");
   }).single("video");
 
   
+  // Get function in which send session as routes.
+router.get('/session', function(req, res, next) {
+  
+  if (req.session.views) {
+        
+    // Increment the number of views.
+    req.session.views++
+
+    // Print the views.
+    res.write('<p> No. of views: ' 
+        + req.session.views + '</p>') 
+    res.end()
+  } else {
+    req.session.views = 1
+    res.end(' New session is started')
+  }
+})
 
 
 
@@ -106,14 +132,32 @@ router.post('/create', isLoggedIn, upload, async (req, res) => {
 router.get("/:id", async(req, res) => {
   const url = req.url;
   try {
+    if (req.session.views) {
+      // Increment the number of views.
+      let views = req.session.views++
+
       const video = await Videos.findById(req.params.id).populate('user').lean()
   
       res.render('single_video', {
           video,
+          views,
           user: req.user,
           title: `Stride Connect`,
           url: `https://stride-connect.herokuapp.com/videos${url}`
       })
+    } else {
+      let views = 1
+      const video = await Videos.findById(req.params.id).populate('user').lean()
+  
+      res.render('single_video', {
+          video,
+          views,
+          user: req.user,
+          title: `Stride Connect`,
+          url: `https://stride-connect.herokuapp.com/videos${url}`
+      })
+    }
+      
 
     } catch (err) {
       console.error(err)
