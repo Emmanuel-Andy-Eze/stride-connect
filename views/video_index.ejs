@@ -12,17 +12,28 @@
             <div class="nav-right-icons">
                 
             </div>
-            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <div class="wrap search-desktop">
+                <form action="/search" method="GET">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="input-group">
+                                <input style="width: 20rem;" class="form-control border bg-dark" type="search" name="search" placeholder="Search preferred articles..." id="example-search-input">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             </div>
+            <a href="/search"><i class="fa fa-search fa-search-mobile" aria-hidden="true"></i></a>
             <!-- <a href="#"><i class="fa fa-podcast" aria-hidden="true"></i></a>
             <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a> -->
-            <div class="dropdown">
+            <div class="dropdown" id="mobile">
                 <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
                     <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 35px; width: 35px;">
                 </a>
               
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li><a class="dropdown-item" href="/users/profile/<%= user.username %> ">Profile</a></li>
-                  <li><a class="dropdown-item" href="/videos/create">New video</a></li>
+                  <li><a class="dropdown-item" href="/videos/create">New Vlog</a></li>
                   <li><a class="dropdown-item" href="#">Settings</a></li>
                   <hr>
                   <li><a class="dropdown-item" href="/logout">Logout</a></li>
@@ -30,29 +41,60 @@
             </div>
             
         <% } else { %>
-            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
-            <a href="/login" class="btn sign-in bg-dark" style="color: #fff; padding: .3rem .5rem; font-size: .8rem; border: 1px solid #fff; outline: none; border: .5px solid #fff;">
+            <div style="display: flex; flex-direction: row;">
+            <div class="wrap search-desktop">
+                <form action="/search" method="GET" style="margin-right: 1rem;">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="input-group">
+                                <input style="width: 15rem;" class="form-control border bg-dark" type="search" name="search" placeholder="Search preferred articles..." id="example-search-input">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             </div>
+            <a href="/search"><i class="fa fa-search fa-search-mobile" aria-hidden="true"></i></a>
+            <a href="/login" class="btn btn-primary sign-in" style="color: #fff; padding: .3rem .5rem; font-size: .8rem; outline: none;">
                 Get Started
             </a>
+        </div>
         <% } %>
     </div>
 </div>
 
-<main>
-    <div class="main-left">
-        <ul class="nav-links">
-            <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#" class="nav-link"><i class="far fa-newspaper"></i> Articles</a></li>
-            <li><a href="#" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
-            <li><a href="#" class="nav-link"><i class="fas fa-podcast"></i> Podcasts</a></li>
+<main style="width: 100%;">
+    <div class="main-left pt-5" style="padding-right: 2rem; padding-left: 2rem; padding-bottom: 1rem;">
+        <ul class="nav-links " style="background-color: #212529; border-radius: 8px;">
+            <!-- <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a></li> -->
+            <li><a href="/" class="nav-link"><i class="far fa-newspaper"></i> Articles</a></li>
+            <li><a href="/videos" class="nav-link btn-primary" style="border-radius: 8px;"><i class="fas fa-video"></i> Videos</a></li>
+            <li><a href="/podcasts" class="nav-link"><i class="fas fa-podcast"></i> Podcasts</a></li>
         <hr>
-            <li><a href="#" class="nav-link"><i class="far fa-bell"></i> Notifications</a></li>
-            <li><a href="#" class="nav-link"><i class="far fa-envelope"></i> Messages</a></li>
+        <% if(user){ %>
+            <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="#" class="nav-link"><i class="fas fa-comments"></i> Chats</a></li>
         <hr>
-            <li><a href="#" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
+        
+            <li><a href="/users/profile/<%= user.username %>" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
             <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
-        </ul>
+            <li><a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+            <li><a href="/videos/create" class="nav-link btn-secondary btn-sm" style="border-radius: 8px; color: #000;"> Create a new Vlog</a></li>
+            <% } else { %>
+
+                <% } %>
+        </ul> 
+
+        <% if(user){ %>
+        <div class="dropdown desktop d-flex ms-1" style="align-items: center; background-color: #212529; border-radius: 8px; padding-top: 1rem; padding-bottom: .5rem; padding-left: 1rem;">
+            <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 45px; width: 45px;">
+            <div class="user-info">
+                <div class="user-name"><span><%= user.name %></span></div>
+                <div class="user-name" style="font-size: .7rem;"><span><%= user.username %></span></div>
+            </div>
+        </div>
+        <% } else { %>
+
+            <% } %>
     </div>
 
     <div class="main-center">
@@ -73,62 +115,21 @@
         <div class="feeds">
             <% if(videos.length > 0){ %>
                 <% videos.forEach(function(video){ %>
-                    <div class="feed bg-dark">
-                        <div class="feed-image">
-                            <!-- <img src="https://www.bakedbyanintrovert.com/wp-content/uploads/2018/05/Birthday-Cake-Recipe-Image-735x735.jpg" alt=""> -->
-                        </div>
-                        <div class="feed-header">
-                            <div class="author-detail pt-1">
+                    <a href="/videos/<%= video._id %>" class="text-white">
+                    <div class="video-feed" style="width: 100%;">
+                        <div class="video-cards bg-dark" style="width: 100%; margin-bottom: 1rem; padding-bottom: 1rem; border-radius: 8px;">
+                            <video src="<%= video.video %> " style="width: 100%; height: 20rem; display: flex; border-top-left-radius: 8px; border-top-right-radius: 8px; object-fit: cover;"></video>
+                            <div class="author-detail" style="padding: 1rem 1rem 0 1rem;">
                                 <img src="<%= video.user.image %> " alt="" class="author-img">
                                 <div class="feed-author-time">
                                     <span style="font-size: .8rem;"><%= video.user.name %> </i></span>
                                     <span class="time" style="font-size: .6rem;"><%= moment(video.created).fromNow() %></span>
                                 </div>
                             </div>
-                           
-                                <div class="feed-action">
-                                    
-                                </div>
-                           
-                        </div>
-        
-                        <div class="feed-center-split" style="display: flex; justify-content: space-between; align-items: center;">
-                            <div class="feed-center" style="padding: 0; width: 95%; margin: 1rem auto 0 auto;">
-                                <div class="video mb-1">
-                                    <div class="post-image mb-1">
-                                        <div class="video-play" style="width: 20%; margin: 0 auto; height: 0;">
-                                            <a href="/videos/<%= video._id %> "><i class="fa fa-play-circle" style="font-size: 4rem; position: relative; top: 5.5rem; z-index: 300;"></i></a>
-                                        </div>
-                                        
-                                        <video style="width: 100%; object-fit: cover;" height="260">
-                                            <source src="<%= video.video %> " type="video/mp4">
-                                            <source src="movie.ogg" type="video/ogg">
-                                          Your browser does not support the video tag.
-                                          </video>
-                                        
-                                    </div>
-                                </div>
-                                <a href="/videos/<%= video._id %> "><p class="feed-title" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 900;"><%= video.title %></p></a>
-                                <div class="feed-category">
-                                    <p class="category"><%= video.category %></p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                        
-                        <!-- <hr class="feed-line"> -->
-                        <div class="feed-bottom">
-                            <ul class="feed-icons">
-                                <li><a href="#"><i class="fas fa-heart"></i> 1.6k</a></li>
-                                <li class="me-3"><i class="far fa-comment-alt"></i> 101</li>
-                                <li><a href="#"><i class="far fa-eye"></i> 500</a></li>
-                            </ul>
-                            <div class="bookmark">
-                                <a href="#"><i class="fas fa-bookmark" style="font-size: 1.2rem;"></i></a>
-                            </div>
+                            <p class="feed-title" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 900; padding-left: 1rem; margin-bottom: 0;"><%= video.title %></p>
                         </div>
                     </div>
+                </a>
                 <% }) %>
                 
             <% } else { %>
@@ -140,21 +141,27 @@
         </div>
     </div>
 
-    <div class="main-right">
-        <div class="advert">
-            <img src="/public/img/stride_small.png" alt="">
+    <div class="main-right" style="padding-top: 3rem;">
+        <div class="advert" style="position: fixed; background-color: #212529; padding-top: ;">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="z-index: 300;">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/14abd462929121.5aa0237548488.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/foodnavigator.com/news/market-trends/tesco-advert-demonises-meat-as-a-food-group-claim-british-farmers/10285734-1-eng-GB/Tesco-advert-demonises-meat-as-a-food-group-claim-British-farmers.png" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://guardian.ng/wp-content/uploads/2020/06/Nile-University-1.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+              </div>
         </div>
         <hr>
-        <div class="following">
-            <h5>Authors you read</h5>
-            <ul class="authors">
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-                <li><img src="../public/Emmanuel.jpg" alt="Author Image" class="author-img"><a href="#">Emmanuel Eze</a></li>
-            </ul>
+
+        <div class="following" style="padding-top: 11rem;">
+            <h5></h5>
+            
         </div>
     </div>
 </main>

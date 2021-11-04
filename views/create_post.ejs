@@ -5,25 +5,27 @@
         <a href="/" style="text-decoration: none;"><span class="logo1"><img src="/public/img/strides logo 7.png" alt="" height="60" width="120"></span></a>
         
     </div>
-
-    <!-- <form action="/" method="GET">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <div class="input-group">
-                    <input class="form-control border search-dark" type="search" name="search" placeholder="Search preferred posts..." id="example-search-input">
-                </div>
-            </div>
-        </div>
-    </form> -->
-
+    
     <div class="nav-right">
+        <% if(user){ %>
             <div class="nav-right-icons">
                 
             </div>
-            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <div class="wrap search-desktop">
+                <form action="/search" method="GET">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="input-group">
+                                <input style="width: 20rem;" class="form-control border bg-dark" type="search" name="search" placeholder="Search preferred articles..." id="example-search-input">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             </div>
+            <a href="/search"><i class="fa fa-search fa-search-mobile" aria-hidden="true"></i></a>
             <!-- <a href="#"><i class="fa fa-podcast" aria-hidden="true"></i></a>
             <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a> -->
-            <div class="dropdown">
+            <div class="dropdown" id="mobile">
                 <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
                     <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 35px; width: 35px;">
                 </a>
@@ -36,10 +38,30 @@
                   <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </div>
+            
+        <% } else { %>
+            <div style="display: flex; flex-direction: row;">
+            <div class="wrap search-desktop">
+                <form action="/search" method="GET" style="margin-right: 1rem;">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="input-group">
+                                <input style="width: 15rem;" class="form-control border bg-dark" type="search" name="search" placeholder="Search preferred articles..." id="example-search-input">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             </div>
+            <a href="/search"><i class="fa fa-search fa-search-mobile" aria-hidden="true"></i></a>
+            <a href="/login" class="btn btn-primary sign-in" style="color: #fff; padding: .3rem .5rem; font-size: .8rem; outline: none;">
+                Get Started
+            </a>
+        </div>
+        <% } %>
     </div>
 </div>
 
-<div class="page" style="background: #121212; padding-bottom: 2rem;">
+<div class="page">
 <section class="add-page">
     <form action="/posts/create" method="POST" enctype="multipart/form-data">
         <div class="form-group row mb-2">
@@ -47,14 +69,21 @@
         </div>
 
         <div class="form-group row mb-2">
-            <input type="text" id="category" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="category" placeholder="#Enter Post Category here" required><br>
-        </div>
-
-        <div class="form-group row mb-2">
             <input type="text" id="description" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="description" placeholder="Enter Post Description" required><br>
         </div>
 
+        <div class="form-group row mb-2">
+            <label for="category" class="text-white ms-1">Select Category</label>
+            <select class="form-select form-control  bg-secondary text-white border-0" name="category" style="width: 94%; margin-left: 1rem;" aria-label="Default select example">
+                <option value="#general">General</option>
+                <option value="#programming">Programming</option>
+                <option value="#fashion">Fashion</option>
+                <option value="#sport">Sport</option>
+              </select>
+        </div>
+
         <div class="form-group row">
+            <label for="image" class="text-white ms-1">Select Article Image</label>
             <input class="form-control bg-secondary text-white border-0" type="file" id="image" name="image" accept="image/*" style="width: 94%; margin-left: 1rem;" required>
         </div><br>
         <hr style="margin-top: 0;">
@@ -63,13 +92,13 @@
         
         <!-- <label for="body">Write Post Body</label> -->
         <div class="form-group row">
-            <label for="body" class="col-md-4 col-form-label text-md-right">Article Body</label>
+            <label for="body" class="col-md-4 col-form-label text-md-right text-white">Article Body</label>
             <div class="col-12 mb-3">
-                <textarea name="body" class="bg-secondary text-white" id="body" rows="17" class="form-control"></textarea>
+                <textarea name="body" class="bg-white text-dark" id="body" rows="17" class="form-control" style="width: 97%; border-radius: 8px; padding: 1rem;"></textarea>
             </div>
         </div>
  
-        <input type="submit" class="btn" value="Upload">
+        <input type="submit" class="btn btn-primary" value="Upload">
         <a href="/" class="btn btn-danger">Discard</a>
       </form> 
 </section>

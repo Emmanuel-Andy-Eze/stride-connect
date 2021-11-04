@@ -9,6 +9,7 @@ const multer = require("multer");
 const cloudinary = require("../classes/cloudinary");
 const upload = require("../classes/multer")
 var moment = require('moment');
+var counter = 0;
 
 exports.index = function(req, res) {
     // send moment to your ejs
@@ -17,7 +18,7 @@ exports.index = function(req, res) {
 
 //GET create new post
 router.get('/create', isLoggedIn, (req, res) => {
-        res.render('create_post', { title: 'New Post | Express Instagram', user: req.user });
+        res.render('create_post', { title: 'New Post | Stride Connect', user: req.user });
 });
 
 //POST new post
@@ -67,12 +68,13 @@ router.get("/:id", async(req, res) => {
     const url = req.url;
     try {
         const post = await posts.findById(req.params.id).populate('user').lean()
-    
+        counter++;
         res.render('single_post', {
             post,
             user: req.user,
             title: `Stride Connect`,
-            url: `https://stride-connect.herokuapp.com/posts${url}`
+            url: `https://stride-connect.herokuapp.com/posts${url}` ,
+            counter
         })
 
       } catch (err) {

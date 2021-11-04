@@ -138,22 +138,23 @@
         
         <div class="show-feeds" style="padding-top: 0; padding: 0;">
             <div class="post-image mb-1 mt-1" style="position: fixed; padding: 0; width: 100%; margin: 0 auto; z-index: 1000;">
-                <video style="width: 100%; object-fit: cover;" height="260" controls autoplay>
-                    <source src="<%= video.video %> " type="video/mp4">
-                    <source src="movie.ogg" type="video/ogg">
-                  Your browser does not support the video tag.
-                  </video>
+                <audio style="width: 100%; object-fit: cover;" height="260" controls>
+                    <source src="<%= podcast.audio %> " type="audio/mp3">
+                    <source src="<%= podcast.audio %>" type="audio/mpeg">
+                    <source src="<%= podcast.audio %>" type="audio/wav">
+                  Your browser does not support the audio element
+                </audio>
             </div>
             
             <div class="video-info" style="padding-top: 18rem; padding-left: 1rem; padding-right: 1rem;">
-                <h5><%= video.title %> </h5>
+                <h5><%= podcast.title %> </h5>
                 <div class="post-info" style="display: flex; justify-content: space-between;">
-                    <p>Author: <%= video.user.name %>  </p>
-                    <span class="time"><%= moment(video.created).fromNow() %></span>
+                    <p>Author: <%= podcast.user.name %>  </p>
+                    <span class="time"><%= moment(podcast.created).fromNow() %></span>
                 </div>
                 <hr style="margin-top: 0;">
                 <div class="post-body" style="padding-bottom: 3rem;">
-                    <span><pre><%= video.description %></pre> </span>
+                    <span><pre><%= podcast.description %></pre> </span>
                 </div>
             </div>
             
@@ -174,7 +175,7 @@
                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
                           <li><a class="dropdown-item disabled" href="#">Share to: </a></li>
                           <hr class="text-white mt-1 mb-1">
-                          <li><a class="dropdown-item" style="color: #24CC63;" href="https://api.whatsapp.com/send?text=Learn from this Video on Stride Connect: '<%= video.title %>'  + %20 + <%= url %>"><i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp</a></li>
+                          <li><a class="dropdown-item" style="color: #24CC63;" href="https://api.whatsapp.com/send?text=Learn from this Podcast on Stride Connect: '<%= video.title %>'  + %20 + <%= url %>"><i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp</a></li>
                           <li><a class="dropdown-item" style="color: #167AAB;" href="https://www.linkedin.com/sharing/share-offsite/?url=<%= url %> "><i class="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
                           <li><a class="dropdown-item" style="color: #24A4F2;" href="https://twitter.com/intent/tweet?url=<%= url %>  + '&text=' + <%= video.title %> "><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
                           <li><a class="dropdown-item" style="color: #3b5998;" href="http://www.facebook.com/sharer.php?u=<%= url %>  "><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>

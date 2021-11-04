@@ -1,0 +1,72 @@
+<%- include('header') %>
+<div class="nav">
+    <div class="nav-left">
+        
+        <a href="/" style="text-decoration: none;"><span class="logo1"><img src="/public/img/strides logo 7.png" alt="" height="60" width="120"></span></a>
+        
+    </div>
+
+    <!-- <form action="/" method="GET">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="input-group">
+                    <input class="form-control border search-dark" type="search" name="search" placeholder="Search preferred posts..." id="example-search-input">
+                </div>
+            </div>
+        </div>
+    </form> -->
+
+    <div class="nav-right">
+            <div class="nav-right-icons">
+                
+            </div>
+            <a href="/search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <!-- <a href="#"><i class="fa fa-podcast" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a> -->
+            <div class="dropdown">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0; outline: none;">
+                    <img src="<%= user.image %>" alt="Author Image" class="author-img" style="height: 35px; width: 35px;">
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/users/profile/<%= user.username %> ">Profile</a></li>
+                  <li><a class="dropdown-item" href="/posts/create">New post</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <hr>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+    </div>
+</div>
+
+<div class="page" style="background: #121212; padding-bottom: 2rem;">
+<section class="add-page">
+    <h2 class="ms-1">Upload Podcast</h2>
+    <form action="/podcasts/create" method="POST" enctype="multipart/form-data">
+        <div class="form-group row mb-2">
+            <input type="text" id="title" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="title" placeholder="Enter Podcast title here" required><br>
+        </div>
+
+        <div class="form-group row mb-2">
+            <input type="text" id="category" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="category" placeholder="#Enter Podcast Category here" required><br>
+        </div>
+
+        <div class="form-group row mb-2">
+            <input type="text" id="description" class="form-control  bg-secondary text-white border-0" style="width: 94%; margin-left: 1rem;" name="description" placeholder="Enter Podcast Description" required><br>
+        </div>
+        <hr style="margin-top: 1rem;">
+        <div class="form-group row">
+            <label for="audio" class="ms-1">Select Podcast File</label>
+            <input class="form-control bg-secondary text-white border-0" type="file" id="audio" name="audio" accept="audio/*" style="width: 94%; margin-left: 1rem;" required>
+        </div><br>
+        <hr style="margin-top: 0;">
+        <!-- <label for="coverImage">Choose Cover image</label>
+        <input type="file" id="coverImage" name="coverImage" accept="image/*"> -->
+        <input type="submit" class="btn" value="Upload">
+        <a href="/podcasts" class="btn btn-danger">Discard</a>
+      </form> 
+</section>
+</div>
+
+
+<%- include('footer') %>

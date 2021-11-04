@@ -16,7 +16,8 @@ dotenv.config();
 
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
-const videoRoute = require("./routes/videos")
+const videoRoute = require("./routes/videos");
+const podcastRoute = require("./routes/podcasts");
 
 //Initialize App
 const app = express();
@@ -52,6 +53,7 @@ require('./routes/index')(app,passport);
 app.use("/users/", userRoute);
 app.use("/posts/", postRoute);
 app.use("/videos/", videoRoute);
+app.use("/podcasts", podcastRoute);
 
 const port = process.env.PORT || 4000
 
